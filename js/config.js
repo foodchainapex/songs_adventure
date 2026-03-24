@@ -191,7 +191,7 @@ const OBSTACLE_ASSETS = {
 
 // Easter egg configuration
 const EASTER_EGG_CONFIG = {
-    TARGET_COUNT: 1,  // Target count to trigger easter egg (collectibles or jumps)
+    TARGET_COUNT: 27,  // Target count to trigger easter egg (collectibles or jumps)
     ENABLED: true     // Whether to enable easter egg
 };
 
