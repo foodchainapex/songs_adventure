@@ -32,11 +32,32 @@ let collectibleCount = 0;        // Collectible count (for easter egg)
 // Input state
 let keys = {};
 
+// Helper function to calculate responsive scale
+function getGameScale() {
+    // Base reference dimensions
+    const baseWidth = 350;
+    const baseHeight = 600;
+    
+    // Calculate base scale
+    let scale = Math.min(canvas.width / baseWidth, canvas.height / baseHeight);
+    
+    // Mobile adjustment: reduce size on small screens
+    if (canvas.width < 500) {
+        // For phones: additional 0.7x reduction
+        scale *= 0.7;
+    } else if (canvas.width < 800) {
+        // For tablets: slight reduction
+        scale *= 0.85;
+    }
+    
+    return scale;
+}
+
 // ========== Player Class ==========
 class Player {
     constructor() {
-        // Scale based on screen size (base size increased)
-        const scale = Math.min(canvas.width / 350, canvas.height / 600);
+        // Scale based on screen size with mobile adaptation
+        const scale = getGameScale();
         // Sprite size (square, base 80px)
         this.baseWidth = 80 * scale;
         this.baseHeight = 80 * scale;
@@ -128,7 +149,7 @@ class Player {
 class Obstacle {
     constructor() {
         // Scale based on screen size
-        const scale = Math.min(canvas.width / 350, canvas.height / 600);
+        const scale = getGameScale();
         
         this.isAirObstacle = Math.random() < 0.35;
         
@@ -276,7 +297,7 @@ function spawnObstacles(deltaTime) {
 class Collectible {
     constructor() {
         // 根据屏幕尺寸缩放（基准尺寸增大）
-        const scale = Math.min(canvas.width / 350, canvas.height / 600);
+        const scale = getGameScale();
         this.size = 50 * scale;
         this.x = canvas.width;
         this.isAir = Math.random() < 0.4;
@@ -356,7 +377,7 @@ class Collectible {
 class PowerUp {
     constructor() {
         // 根据屏幕尺寸缩放（基准尺寸增大）
-        const scale = Math.min(canvas.width / 350, canvas.height / 600);
+        const scale = getGameScale();
         this.size = 60 * scale;
         this.x = canvas.width;
         this.y = canvas.height - CONFIG.GROUND_HEIGHT - (100 + Math.random() * 60) * scale;
