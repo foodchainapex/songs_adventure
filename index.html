@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Songweirong Adventure</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        
+        <div id="ui-layer">
+            <div id="score-board">
+                <span id="score">0</span>
+            </div>
+            <div id="high-score">
+                High Score: <span id="highScoreValue">0</span>
+            </div>
+            
+            <!-- Mobile Hint -->
+            <div id="mobile-hint" class="hidden-on-desktop">
+                Tap anywhere to jump
+            </div>
+            
+            <div id="game-overlay">
+                <!-- Banner Image (shared by game entry and result) - Fill entire interface -->
+                <div id="banner-container">
+                    <img id="banner-image" src="assets/banner/normal_edition.png" alt="Songweirong Adventure" onerror="this.style.display='none'">
+                </div>
+                
+                <p id="game-subtitle">Press SPACE or tap screen to start</p>
+                <button id="start-btn">START GAME</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Load scripts in correct order (v17-single banner+blue background) -->
+    <script src="js/config.js?v=24"></script>
+    <script src="js/renderer-base.js?v=24"></script>
+    <script src="js/audio.js?v=24"></script>
+    <!-- Image style (uses running_man.png) -->
+    <script src="js/renderers/image.js?v=25"></script>
+    <script src="js/game.js?v=24"></script>
+</body>
+</html>
