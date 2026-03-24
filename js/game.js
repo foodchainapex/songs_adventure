@@ -577,8 +577,7 @@ function bindEvents() {
         }
     });
 
-    // Start button
-    document.getElementById('start-btn').addEventListener('click', startGame);
+
 }
 
 // ========== Game Control ==========
@@ -649,7 +648,7 @@ function gameOver() {
     
     document.getElementById('game-subtitle').innerHTML = 
         `最终得分: <span style="color: #FFD700; font-size: 1.3em;">${Math.floor(score)}</span>`;
-    document.getElementById('start-btn').textContent = '再玩一次';
+
     
     // Show result image (simplified: only easter egg and normal states)
     showResultImage(isEasterEgg);
