@@ -38,16 +38,27 @@ function getGameScale() {
     const baseWidth = 350;
     const baseHeight = 600;
     
-    // Calculate base scale
-    let scale = Math.min(canvas.width / baseWidth, canvas.height / baseHeight);
+    // Detect landscape mode on mobile (width > height and small height)
+    const isMobileLandscape = canvas.width > canvas.height && canvas.height < 500;
     
-    // Mobile adjustment: reduce size on small screens
-    if (canvas.width < 500) {
-        // For phones: additional 0.7x reduction
-        scale *= 0.7;
-    } else if (canvas.width < 800) {
-        // For tablets: slight reduction
-        scale *= 0.85;
+    let scale;
+    
+    if (isMobileLandscape) {
+        // For mobile landscape: use height as primary reference
+        // Increase scale to make elements larger in landscape
+        scale = (canvas.height / baseHeight) * 1.3;
+    } else {
+        // Normal calculation for portrait and desktop
+        scale = Math.min(canvas.width / baseWidth, canvas.height / baseHeight);
+        
+        // Mobile adjustment: reduce size on small screens
+        if (canvas.width < 500) {
+            // For phones in portrait: additional 0.7x reduction
+            scale *= 0.7;
+        } else if (canvas.width < 800) {
+            // For tablets: slight reduction
+            scale *= 0.85;
+        }
     }
     
     return scale;
