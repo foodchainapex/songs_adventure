@@ -1,4 +1,4 @@
-# Songweirong Adventure
+# Song's Adventure
 
 A fun HTML5 endless runner game.
 
